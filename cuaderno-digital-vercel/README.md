@@ -1,0 +1,1 @@
+Proyecto estático listo para Vercel. Subir carpeta a un repo y desplegar.
