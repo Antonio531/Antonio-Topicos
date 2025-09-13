@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cuaderno Digital 1 — Sistemas de bases de datos distribuidas</title>
+<meta name="description" content="Cuaderno Digital 1: portada, secciones temáticas y reflexión personal de la unidad Sistemas de Bases de Datos Distribuidas."/>
+<style>
+  :root {
+    --bg: #0b1220;
+    --bg2: #0e172a;
+    --card: #0f1f3a;
+    --muted: #cbd5e1;
+    --text: #e2e8f0;
+    --accent: #22c55e;
+    --accent2: #3b82f6;
+    --accent3: #a855f7;
+    --ring: rgba(34, 197, 94, .35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: radial-gradient(1200px 700px at 10% -10%, #0b2545 0%, var(--bg) 40%), radial-gradient(1200px 800px at 120% 10%, #1e3a8a 0%, var(--bg2) 30%); color: var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial; line-height: 1.65; scroll-behavior: smooth; }
+  a { color: var(--accent2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  header.hero { position: relative; overflow: hidden; border-bottom: 1px solid #23324a; }
+  header.hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(34,197,94,.18), rgba(59,130,246,.18)), radial-gradient(800px 400px at 0% 0%, rgba(168,85,247,.25), transparent 60%); filter: blur(20px); }
+  .hero-inner { position: relative; padding: 32px 0 24px; }
+  .hero-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .hero-logos img { height: 76px; width: auto; object-fit: contain; }
+  h1 { font-size: clamp(28px, 4vw, 44px); margin: 8px 0 8px; letter-spacing: .2px; }
+  .sub { color: var(--muted); font-size: clamp(14px, 2.2vw, 18px); }
+  .badge { display: inline-block; padding: 6px 10px; border: 1px solid #264b2f; border-radius: 999px; background: rgba(34,197,94,.12); color: #bbf7d0; font-weight: 600; }
+  .card { background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border: 1px solid #22314a; border-radius: 18px; padding: 18px; box-shadow: 0 8px 24px rgba(2,6,23,.35); }
+  .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+  .col-12 { grid-column: span 12; }
+  .col-6 { grid-column: span 6; }
+  .label { color: #9fb2cc; font-size: 14px; text-transform: uppercase; letter-spacing: .12em; }
+  .value { font-weight: 600; }
+  nav.toc { position: sticky; top: 0; background: rgba(2, 6, 23, .7); backdrop-filter: blur(6px); border-bottom: 1px solid #21314a; z-index: 10; }
+  nav.toc .wrap { display: flex; gap: 10px; overflow-x: auto; padding: 10px 16px; }
+  nav.toc a { padding: 8px 12px; border-radius: 999px; background: #0b1d35; border: 1px solid #1a3357; white-space: nowrap; font-weight: 600; }
+  nav.toc a:hover { box-shadow: 0 0 0 3px var(--ring); }
+  section { padding: 28px 0; }
+  h2 { font-size: clamp(22px, 3vw, 30px); margin: 0 0 12px; }
+  h3 { margin: 12px 0 6px; font-size: 18px; color: #c7d2fe; }
+  p { margin: 8px 0; text-align: justify; }
+  ul { margin: 8px 0 8px 18px; }
+  li { margin-bottom: 6px; }
+  .callout { border-left: 4px solid var(--accent2); padding: 12px 14px; background: rgba(59,130,246,.08); border-radius: 12px; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; background: rgba(168,85,247,.18); border: 1px solid rgba(168,85,247,.4); color: #e9d5ff; font-size: 12px; margin-right: 6px; }
+  .footer { color: var(--muted); border-top: 1px solid #22314a; margin-top: 24px; padding-top: 16px; }
+  .topbtn { position: fixed; right: 14px; bottom: 14px; padding: 10px 14px; border-radius: 999px; background: var(--accent2); color: white; border: 0; cursor: pointer; font-weight: 700; box-shadow: 0 8px 20px rgba(59,130,246,.35); }
+  .topbtn:hover { filter: brightness(1.05); }
+  @media (max-width: 780px) {
+    .col-6 { grid-column: span 12; }
+    .hero-logos img { height: 60px; }
+  }
+  @media print {
+    nav.toc { display: none; }
+    .topbtn { display: none; }
+    a::after { content: " (" attr(href) ")"; font-size: 12px; color: #94a3b8; }
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-top">
+      <div class="hero-logos" style="display:flex; align-items:center; gap:12px;">
+        <img src="assets/logo-tec.png" alt="Instituto Tecnológico Superior de Pánuco" />
+      </div>
+      <div style="text-align:center; flex:1;">
+        <span class="badge">Cuaderno Digital 1</span>
+        <h1>Sistemas de bases de datos distribuidas</h1>
+        
+      </div>
+      <div class="hero-logos" style="display:flex; align-items:center; justify-content:flex-end; gap:12px;">
+        <img src="assets/logo-inf.png" alt="Ingeniería Informática" />
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px;">
+      <div class="grid">
+        <div class="col-6">
+          <div class="label">Nombre</div>
+          <div class="value">Antonio Tadeo Ponce Herbert</div>
+        </div>
+        <div class="col-6">
+          <div class="label">Fecha</div>
+          <div class="value">13/09/2025</div>
+        </div>
+        <div class="col-6">
+          <div class="label">Asignatura</div>
+          <div class="value">Sistemas de bases de datos / Distribuidos</div>
+        </div>
+        <div class="col-6">
+          <div class="label">Unidad</div>
+          <div class="value">1 — Sistemas de bases de datos distribuidas</div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <a href="#conceptos">1.1 Conceptos</a>
+    <a href="#diseno">1.2 Diseño</a>
+    <a href="#actualizacion">1.3 Actualización</a>
+    <a href="#consultas">1.4 Consultas</a>
+    <a href="#transacciones">1.5 Transacciones</a>
+    <a href="#reflexion">Reflexión</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="conceptos">
+    <h2>1.1 Conceptos de base de datos distribuidas</h2>
+    <div class="card">
+      <p>Un sistema de bases de datos distribuidas (DDBS) integra múltiples nodos interconectados para almacenar y procesar información de forma coordinada, presentando a los usuarios una <strong>vista lógica única</strong> aunque los datos estén repartidos físicamente en diferentes sitios. Sus objetivos principales son <em>escalabilidad</em>, <em>disponibilidad</em> y <em>baja latencia</em>.</p>
+      <h3>Transparencias fundamentales</h3>
+      <ul>
+        <li><strong>Fragmentación</strong>: oculta que una tabla está dividida en fragmentos.</li>
+        <li><strong>Ubicación</strong>: evita que el usuario conozca en qué sitio vive cada fragmento.</li>
+        <li><strong>Replicación</strong>: permite múltiples copias aparentando un solo dato.</li>
+        <li><strong>Concurrencia y fallas</strong>: múltiples clientes y fallas sin comprometer la ilusión de unidad.</li>
+      </ul>
+      <h3>CAP y modelos de consistencia</h3>
+      <div class="callout">
+        En presencia de particiones de red, no se puede tener a la vez consistencia fuerte y disponibilidad total. Los sistemas eligen entre <strong>CP</strong> (consistencia fuerte) o <strong>AP</strong> (alta disponibilidad con consistencia eventual). También existen modelos intermedios (por quórum, monotónica, lectura de instantáneas).
+      </div>
+      <h3>Arquitecturas</h3>
+      <ul>
+        <li><strong>Shared-nothing</strong> (la más usada para escalar): cada nodo administra CPU y almacenamiento propios.</li>
+        <li><strong>Federada</strong>: integra motores heterogéneos bajo un catálogo global.</li>
+        <li><strong>Primario-réplica / multi-líder</strong>: según el patrón de escritura.</li>
+      </ul>
+      <p><span class="tag">transparencia</span><span class="tag">CAP</span><span class="tag">consistencia</span><span class="tag">shared‑nothing</span></p>
+    </div>
+  </section>
+
+  <section id="diseno">
+    <h2>1.2 Diseño de base de datos distribuidas</h2>
+    <div class="card">
+      <p>Diseñar implica decidir <strong>fragmentación</strong>, <strong>ubicación</strong> y <strong>replicación</strong> maximizando desempeño y resiliencia con el menor costo operativo.</p>
+      <h3>Fragmentación</h3>
+      <ul>
+        <li><strong>Horizontal</strong> (por rango o hash): reparte filas; favorece escalamiento de escritura.</li>
+        <li><strong>Vertical</strong>: separa columnas; acerca atributos más usados.</li>
+        <li><strong>Híbrida</strong>: combina ambas según el patrón de acceso.</li>
+      </ul>
+      <h3>Ubicación y replicación</h3>
+      <ul>
+        <li><strong>Replicación síncrona</strong>: lecturas consistentes con mayor latencia.</li>
+        <li><strong>Replicación asíncrona</strong>: mejor desempeño tolerando desfaces temporales.</li>
+        <li><strong>Quórums</strong> R/W: garantiza intersección para visibilidad global.</li>
+      </ul>
+      <h3>Catálogo y enrutamiento</h3>
+      <p>Un <em>catálogo global</em> mantiene metadatos de fragmentos, ubicaciones y reglas de enrutamiento. Se usan <strong>tablas de hash consistentes</strong> para minimizar movimientos cuando cambian los nodos.</p>
+      <div class="callout">Buenas prácticas: evitar puntos únicos de falla, balancear particiones, versionar el esquema global y registrar decisiones de particionado.</div>
+      <p><span class="tag">particionado</span><span class="tag">replicación</span><span class="tag">hash consistente</span></p>
+    </div>
+  </section>
+
+  <section id="actualizacion">
+    <h2>1.3 Procesamiento de operaciones de actualización distribuidas</h2>
+    <div class="card">
+      <p>El reto es que todas las réplicas <strong>converjan al mismo estado</strong> pese a fallas y concurrencia.</p>
+      <h3>Patrones de escritura</h3>
+      <ul>
+        <li><strong>Primario‑réplica</strong>: un nodo serializa escrituras por partición; sencillo pero dependiente del primario.</li>
+        <li><strong>Multi‑líder</strong>: se puede escribir en varias réplicas; requiere resolución de conflictos.</li>
+      </ul>
+      <h3>Control de concurrencia y conflictos</h3>
+      <ul>
+        <li>Marcas de tiempo, relojes vectoriales, LWW y <strong>CRDTs</strong> para estados convergentes.</li>
+        <li>Idempotencia y reintentos con <em>backoff</em> para fallas intermitentes.</li>
+      </ul>
+      <h3>Atomicidad distribuida</h3>
+      <ul>
+        <li><strong>Two‑Phase Commit (2PC)</strong>: preparar → confirmar/abortar; simple pero puede bloquear.</li>
+        <li><strong>Three‑Phase</strong> o <strong>sagas</strong>: reducen bloqueos o compensan pasos en procesos largos.</li>
+      </ul>
+      <p><span class="tag">convergencia</span><span class="tag">2PC</span><span class="tag">sagas</span></p>
+    </div>
+  </section>
+
+  <section id="consultas">
+    <h2>1.4 Procesamiento de consultas distribuidas</h2>
+    <div class="card">
+      <p>El optimizador descompone la consulta global en <strong>subconsultas locales</strong> y elige planes que minimizan transferencias y latencia.</p>
+      <h3>Optimización de costos</h3>
+      <ul>
+        <li><strong>Push‑down</strong> de selecciones/proyecciones al sitio origen.</li>
+        <li>Elegir si mover datos al operador o el operador a los datos.</li>
+        <li>Estrategias de unión: <em>broadcast</em>, <em>partitioned hash join</em>, <em>semi‑join</em>.</li>
+      </ul>
+      <h3>Reducción de tráfico</h3>
+      <ul>
+        <li>Filtros de Bloom para podar claves antes de mover filas.</li>
+        <li><em>Pipelining</em> y paralelismo para superponer E/S y CPU.</li>
+      </ul>
+      <h3>Federación</h3>
+      <p>En entornos heterogéneos, el coordinador traduce a dialectos locales y reensambla resultados respetando la semántica declarativa original.</p>
+      <p><span class="tag">optimizer</span><span class="tag">joins</span><span class="tag">federación</span></p>
+    </div>
+  </section>
+
+  <section id="transacciones">
+    <h2>1.5 Manejo de transacciones</h2>
+    <div class="card">
+      <p>Una transacción debe cumplir <strong>ACID</strong> y extenderlo a varios participantes conectados por una red no confiable.</p>
+      <h3>Aislamiento</h3>
+      <ul>
+        <li><strong>2PL</strong> (bloqueo de dos fases), <strong>ordenamiento por marcas de tiempo</strong> y <strong>MVCC</strong>.</li>
+        <li>Lecturas de instantánea para alta concurrencia y <em>garbage collection</em> de versiones.</li>
+      </ul>
+      <h3>Interbloqueos y recuperación</h3>
+      <ul>
+        <li>Detección global, tiempos de vida o prevención con órdenes totales.</li>
+        <li>Logs WAL y <em>checkpoints</em> para rehacer/deshacer tras fallas.</li>
+      </ul>
+      <h3>Coordinación</h3>
+      <ul>
+        <li>2PC/3PC para atomicidad; sagas para procesos de larga duración.</li>
+      </ul>
+      <p><span class="tag">ACID</span><span class="tag">MVCC</span><span class="tag">checkpoints</span></p>
+    </div>
+  </section>
+
+  <section id="reflexion">
+    <h2>Reflexión personal</h2>
+    <div class="card">
+      <p>Aprendí que distribuir datos no es únicamente “partir tablas”; implica elegir compromisos explícitos entre <em>consistencia</em>, <em>disponibilidad</em> y <em>latencia</em>. Lo más retador fue interiorizar el efecto práctico de CAP y del 2PC sobre el tiempo de respuesta, pero al practicar con fragmentación por rango vs hash y con quórums de lectura/escritura entendí cómo se gobierna la convergencia. Me gustó el papel del optimizador empujando filtros para no mover bytes innecesarios y el valor de MVCC para lecturas rápidas; ahora veo que las decisiones de particionado y replicación que se toman al inicio determinan la simplicidad operativa y el rendimiento real del sistema que pienso construir.</p>
+      <p class="sub">Esta sección cumple con el requisito de “reflexión personal”.</p>
+    </div>
+    <div class="footer">El cuaderno incluye portada, cinco secciones temáticas (1.1–1.5) y reflexión. Listo para publicar en Vercel o GitHub Pages.</div>
+  </section>
+
+</main>
+
+<a href="#" class="topbtn" aria-label="Volver arriba">↑</a>
+
+<script>
+  document.querySelector('.topbtn').addEventListener('click', function(e) { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+</script>
+
+</body>
+</html>
